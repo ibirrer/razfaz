@@ -147,7 +147,7 @@ header h2 {
 
 .time {
   position: absolute;
-  left: 9.5em;
+  left: 11.5em;
   padding-top: 2.05em;
   font-size: 0.85em;
   color: #4d4d4d;
@@ -155,7 +155,8 @@ header h2 {
 
 .opponent {
   position: absolute;
-  left: 9.5em;
+  left: 11.5em;
+  white-space: nowrap;
   padding-top: 3.2em;
   font-size: 0.85em;
   color: #4d4d4d;
