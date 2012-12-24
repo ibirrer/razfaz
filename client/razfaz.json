@@ -1,0 +1,29 @@
+{
+  "team":{
+    "id":20160,
+    "name":"Raz Faz"
+  },
+  "games":[
+    {
+      "venue":"A",
+      "date":"DI 18.1",
+      "time":"20:30",
+      "opponent":"Volley Grüningen",
+      "result":"1:3"
+    },
+    {
+      "venue":"A",
+      "date":"MO 22.11",
+      "time":"20:15",
+      "opponent":"Hydra",
+      "result":"0:3"
+    },
+    {
+      "venue":"H",
+      "date":"DI 1.2",
+      "time":"20:15",
+      "opponent":"Dübi Volley",
+      "result":"2:3"
+    }
+  ]
+}

@@ -1,25 +1,9 @@
-var template = $("article#template").remove();
-
-var game1 = {
-  'venue': "H",
-  'date': "Di 18.1",
-  'time': "20:15",
-  'opponent': "Hydra",
-  'result': "0:3"
-}
-
-var game2 = {
-  'venue': "A",
-  'date': "MO 22.11",
-  'time': "20:30",
-  'opponent': "Volley Grüningen",
-  'result': "1:3"
-}
-
-
-$('#games').append(renderGame(template, game1));
-$('#games').append(renderGame(template, game2));
-
+$.get('razfaz.json', function(data) {
+  var template = $("article#template").remove();
+  for(i in data.games) {
+    $('#games').append(renderGame(template, data.games[i]));
+  }
+});
 
 
 function renderGame(tpl, game) {
