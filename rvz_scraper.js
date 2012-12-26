@@ -50,8 +50,13 @@ http.get("http://www.r-v-z.ch/index.php?id=73&nextPage=2&team_ID=" + teamId, fun
       }
 
       var result = games[i][6];
+
       if(result == "") {
         result = "...";
+      }
+      
+      if(venue == "A") {
+        result = result[2] + result[1] + result[0];
       }
 
       schedule.games[i-1] = {
