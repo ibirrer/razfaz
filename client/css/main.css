@@ -165,7 +165,7 @@ header h2 {
 
 .result {
   position: absolute;
-  right: 1em;
+  right: 0.5em;
   padding-top: 0.7em;
   font-size: 2em;
   color: #95b31c;
