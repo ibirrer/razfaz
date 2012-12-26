@@ -1,3 +1,5 @@
+var port = process.env.PORT || 5000;
+
 var fs = require('fs');
 var http = require('http');
 http.createServer(function (req, res) {
@@ -36,9 +38,9 @@ http.createServer(function (req, res) {
   else {
     serve404(res);
   }
-}).listen(1337, '192.168.1.3');
+}).listen(port, 'localhost');
 
-console.log('Server running at http://127.0.0.1:1337/');
+console.log('Server running at port %d', port);
 
 
 function endsWith(str, suffix) {
