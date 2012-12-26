@@ -38,7 +38,7 @@ http.createServer(function (req, res) {
   else {
     serve404(res);
   }
-}).listen(port, 'localhost');
+}).listen(port, '0.0.0.0');
 
 console.log('Server running at port %d', port);
 
