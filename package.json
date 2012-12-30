@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "dependencies": {
     "cheerio": "0.10.x",
-    "moment": "1.6.x"
+    "moment": "1.6.x",
+    "mongodb": "1.2.x"
   },
   "engines": {
     "node": "0.8.x",
