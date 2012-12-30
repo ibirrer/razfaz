@@ -2,12 +2,28 @@ var port = process.env.PORT || 5000;
 
 var fs = require('fs');
 var http = require('http');
+
+// get application version from package.json
+var version = JSON.parse(fs.readFileSync("package.json", "utf8")).version;
+
 http.createServer(function (req, res) {
   console.log("request %s", req.url);
 
   // serve appcache (html5 cache manifest)
-  if(endsWith(req.url, ".appcache")) {
-    serveClientFile(res, req.url, "text/cache-manifest");
+  if(req.url == "/razfaz.appcache") {
+    console.log("serve razfaz.appcache");
+
+    fs.readFile("client" + req.url, 'utf8', function (err, data) {
+      if (err) {
+        console.error(err);
+        serve404(res);
+        return;
+      }
+
+      data = data.replace(/APP_VERSION/g, version);
+      res.writeHead(200, {'Content-Type': "text/cache-manifest"});
+      res.end(data);
+    });
   }  
 
 
