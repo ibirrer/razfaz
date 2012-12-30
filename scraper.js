@@ -1,8 +1,12 @@
-// scraper that reads a schedule from http://www.r-v-z.ch/index.php?id=73&nextPage=2&team_ID=20160 
+// web scraper that reads a schedule from http://www.r-v-z.ch/index.php?id=73&nextPage=2&team_ID=20160 
 // and inserts that schedule into the mongodb schedules collection
 
 var teamId = 20160;
 scrape(teamId, function(err, schedule) {
+  if(err) {
+    console.error(err);
+    return;
+  }
   updateSchedule(schedule);
 });
 
@@ -33,7 +37,8 @@ function scrape(teamId, callback) {
   var http = require('http');
   var moment = require('moment');
   moment.weekdaysShort = ["SO","MO","DI","MI","DO","FR","SA"];
-  http.get("http://www.r-v-z.ch/index.php?id=73&nextPage=2&team_ID=" + teamId, function(rvz) {
+  var url ="http://www.r-v-z.ch/index.php?id=73&nextPage=2&team_ID=" + teamId;
+  http.get(url, function(rvz) {
     var body = ''
     rvz.on('data', function (chunk) {
       body += chunk;
@@ -95,7 +100,12 @@ function scrape(teamId, callback) {
           "opponent": opponent,
           "result": result
         };
-      } 
+      }
+
+      if(games.length <= 0) {
+        callback("no scheduled games found on %s", url);
+        return;
+      }
 
       callback(null,schedule);
     });
