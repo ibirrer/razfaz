@@ -3,6 +3,10 @@
 
 var teamId = 20160;
 scrape(teamId, function(err, schedule) {
+  updateSchedule(schedule);
+});
+
+function updateSchedule(schedule) {
   var Db = require('mongodb').Db;
   var uri = process.env['MONGOLAB_URI']; 
   if(uri == null) { 
@@ -10,9 +14,9 @@ scrape(teamId, function(err, schedule) {
   }
 
   console.log("Connecting to " + uri);
-  Db.connect(uri, {native_parser:true}, function(err, db) {
+  Db.connect(uri, function(err, db) {
     db.collection('schedules', function(err, collection) {
-      collection.update({"team.id":teamId}, schedule.team.id, {upsert:true, w:1}, function(err, result) {
+      collection.update({"team.id":schedule.team.id}, schedule, {upsert:true}, function(err, result) {
         if(err) {
           console.log("Failed to insert schedule. Error: %s", err);
           return;
@@ -22,7 +26,7 @@ scrape(teamId, function(err, schedule) {
       });
     });
   });
-});
+}
 
 
 function scrape(teamId, callback) {
