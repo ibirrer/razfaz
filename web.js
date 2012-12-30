@@ -17,34 +17,17 @@ http.createServer(function (req, res) {
   
   // serve json from mongodb
   else if(endsWith(req.url, ".json")) {
-    var Db = require('mongodb').Db;
-    var uri = process.env['MONGOLAB_URI']; 
-    if(uri == null) { 
-      uri = 'mongodb://localhost:27017/razfaz';
-    }
-
-    console.log("Connecting to " + uri);
-    Db.connect(uri, function(err, db) {
-      if(err) { // connection pooling might help to avoid this error
-        console.log(err);
+    getSchedule(20160, function(err, result){
+      if(err) {
         serve404(res);
         return;
       }
-      db.collection('schedules', function(err, collection) {
-        var teamId = 20160;
-        collection.findOne({"team.id":teamId}, function(err,result) {
-          if (err) {
-            serve404(res);
-            return;
-          }
 
-          console.log("serve schedule for team %d", teamId);
-          res.writeHead(200, {'Content-Type': "application/json"});
-          res.end(JSON.stringify(result));
-          db.close();
-        });
-      });
+      res.writeHead(200, {'Content-Type': "application/json"});
+      res.end(JSON.stringify(result));
     });
+
+
   }  
 
   // serve html
@@ -91,5 +74,32 @@ function serve404(res) {
     if (err) throw err;
     res.writeHead(404, {'Content-Type': 'text/html'});
     res.end(data);
+  });
+}
+
+function getSchedule(teamId, callback) {
+  var Db = require('mongodb').Db;
+  var uri = process.env['MONGOLAB_URI']; 
+  if(uri == null) { 
+    uri = 'mongodb://localhost:27017/razfaz';
+  }
+
+  console.log("Connecting to " + uri);
+  Db.connect(uri, function(err, db) {
+    if(err) {
+      // happens if too many connections are opened in parallel (ab -c 200 -n 1000).
+      // Connection pooling might help to avoid this error.
+      // Consider https://github.com/coopernurse/node-pool
+      console.error(err);
+      callback(err,null);
+      return;
+    }
+
+    db.collection('schedules', function(err, collection) {
+      collection.findOne({"team.id":teamId}, function(err,result) {
+        callback(err,result);
+        db.close();
+      });
+    });
   });
 }
