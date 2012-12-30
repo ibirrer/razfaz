@@ -103,7 +103,7 @@ function scrape(teamId, callback) {
       }
 
       if(games.length <= 0) {
-        callback("no scheduled games found on %s", url);
+        callback("no scheduled games found on " + url, null);
         return;
       }
 
