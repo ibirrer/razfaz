@@ -5,8 +5,14 @@ var http = require('http');
 http.createServer(function (req, res) {
   console.log("request %s", req.url);
 
+  // serve appcache (html5 cache manifest)
+  if(endsWith(req.url, ".appcache")) {
+    serveClientFile(res, req.url, "text/cache-manifest");
+  }  
+
+
   // serve css
-  if(endsWith(req.url, ".css")) {
+  else if(endsWith(req.url, ".css")) {
     serveClientFile(res, req.url, "text/css");
   }  
   
@@ -43,6 +49,11 @@ http.createServer(function (req, res) {
   else if(endsWith(req.url, ".png")) {
     serveClientFile(res, req.url, "image/png");
   }
+  
+  // serve ico
+  else if(endsWith(req.url, ".ico")) {
+    serveClientFile(res, req.url, "image/x-icon");
+  }  
 
   // 404 if request cannot be served
   else {
