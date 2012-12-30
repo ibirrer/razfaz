@@ -15,9 +15,36 @@ http.createServer(function (req, res) {
     serveClientFile(res, req.url, "text/javascript");
   }  
   
-  // serve json
+  // serve json from mongodb
   else if(endsWith(req.url, ".json")) {
-    serveClientFile(res, req.url, "application/json");
+    var Db = require('mongodb').Db;
+    var uri = process.env['MONGOLAB_URI']; 
+    if(uri == null) { 
+      uri = 'mongodb://localhost:27017/razfaz';
+    }
+
+    console.log("Connecting to " + uri);
+    Db.connect(uri, function(err, db) {
+      if(err) { // connection pooling might help to avoid this error
+        console.log(err);
+        serve404(res);
+        return;
+      }
+      db.collection('schedules', function(err, collection) {
+        var teamId = 20160;
+        collection.findOne({"team.id":teamId}, function(err,result) {
+          if (err) {
+            serve404(res);
+            return;
+          }
+
+          console.log("serve schedule for team %d", teamId);
+          res.writeHead(200, {'Content-Type': "application/json"});
+          res.end(JSON.stringify(result));
+          db.close();
+        });
+      });
+    });
   }  
 
   // serve html
