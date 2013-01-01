@@ -3,10 +3,7 @@
 
 var teamId = 20160;
 scrape(teamId, function(err, schedule) {
-  if(err) {
-    console.error(err);
-    return;
-  }
+  handleError(err);
   updateSchedule(schedule);
 });
 
@@ -19,41 +16,34 @@ function updateSchedule(schedule) {
 
   console.log("Connecting to " + uri);
   Db.connect(uri, function(err, db) {
-    if(err) {
-      db.close();
-      return;
-    }
+    handleError(err);
     db.collection('schedules', function(err, collection) {
-      if(err) {
-        db.close();
-        return;
-      }
+      handleError(err);
       // check if schedule already exists or has changed
       collection.findOne(schedule, function(err, doc) {
-        if(err) {
-          db.close();
-          return;
-        }
+        handleError(err);
 
         if(doc != null) {
           console.log("Skip schedule because it is already stored and has not changed since the last update");
-          db.close();
-          return;
+          process.exit(0);
         }
 
         // schedule either not yet saved or changed -> upsert it
         collection.update({"team.id":schedule.team.id}, { "$set": {"team": schedule.team, "games": schedule.games}, "$inc": {"version":1}}, {upsert:true}, function(err, result) {
-          if(err) {
-            console.log("Failed to insert schedule. Error: %s", err);
-            return;
-          }
+          handleError(err);
           console.log("Inserted schedule: %s", JSON.stringify(schedule));
           db.close();
         });
       });
-
     });
   });
+}
+
+function handleError(err) {
+  if(err) {
+    console.log("unexpected error: %s", err);
+    process.exit(1);
+  }
 }
 
 
