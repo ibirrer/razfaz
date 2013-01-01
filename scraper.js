@@ -19,15 +19,39 @@ function updateSchedule(schedule) {
 
   console.log("Connecting to " + uri);
   Db.connect(uri, function(err, db) {
+    if(err) {
+      db.close();
+      return;
+    }
     db.collection('schedules', function(err, collection) {
-      collection.update({"team.id":schedule.team.id}, schedule, {upsert:true}, function(err, result) {
+      if(err) {
+        db.close();
+        return;
+      }
+      // check if schedule already exists or has changed
+      collection.findOne(schedule, function(err, doc) {
         if(err) {
-          console.log("Failed to insert schedule. Error: %s", err);
+          db.close();
           return;
         }
-        console.log("Inserted schedule: %s", JSON.stringify(schedule));
-        db.close();
+
+        if(doc != null) {
+          console.log("Skip schedule because it is already stored and has not changed since the last update");
+          db.close();
+          return;
+        }
+
+        // schedule either not yet saved or changed -> upsert it
+        collection.update({"team.id":schedule.team.id}, { "$set": {"team": schedule.team, "games": schedule.games}, "$inc": {"version":1}}, {upsert:true}, function(err, result) {
+          if(err) {
+            console.log("Failed to insert schedule. Error: %s", err);
+            return;
+          }
+          console.log("Inserted schedule: %s", JSON.stringify(schedule));
+          db.close();
+        });
       });
+
     });
   });
 }
