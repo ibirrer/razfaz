@@ -38,18 +38,15 @@ http.createServer(function (req, res) {
   }  
   
   // serve json from mongodb
-  else if(endsWith(req.url, ".json")) {
+  else if(req.url == "/api/schedules/20160") {
     getSchedule(20160, function(err, result){
       if(err) {
         serve404(res);
         return;
       }
-
       res.writeHead(200, {'Content-Type': "application/json"});
       res.end(JSON.stringify(result));
     });
-
-
   }  
 
   // serve html

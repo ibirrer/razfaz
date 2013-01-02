@@ -1,40 +1,56 @@
 $(document).ready(function() {
-  getSchedule(20160, function(schedule) {
-    var template = $("article#template").remove();
-    for(i in schedule.games) {
-      $('#games').append(renderGame(template, schedule.games[i]));
-    }
-  });
-});
-
-function getSchedule(teamId, callback) {
+  var teamId = 20160;
   if (Modernizr.localstorage) {
-    var localSchedule = localStorage["schedules." + teamId];
+    var localScheduleAsString = localStorage["schedules." + teamId];
+    localSchedule = localScheduleAsString == null ? null : JSON.parse(localScheduleAsString);
     if(localSchedule) {
-      // FIXME: check if version is correct
       // schedule available locally
-      console.log("serve from local");
-      callback(JSON.parse(localSchedule));
+      console.log("render local schedule");
+      renderGames(localSchedule);
+      
+      // check latest version
+      if(navigator.onLine) {
+        loadSchedule(teamId, function(remoteSchedule){
+          if(remoteSchedule.version != localSchedule.version) {
+            console.log("remote schedule is different. local: %d, remote: %d)", localSchedule.version, remoteSchedule.version);
+            console.log("render remote schedule and save it");
+            localStorage["schedules." + teamId] = JSON.stringify(remoteSchedule);
+            renderGames(remoteSchedule);
+          } else {
+            console.log("remote schedule has the same version as local schedule: local: %d, remote: %d", 
+              localSchedule.version, remoteSchedule.version);
+          }
+        }); 
+      }
       return;
     } else {
-      // schedule not available locally -> store it
+      // schedule not available locally -> load and store it
       loadSchedule(teamId, function(schedule) {
-        console.log("save and serve");
+        console.log("render remote schedlue and save it");
         localStorage["schedules." + teamId] = JSON.stringify(schedule);
-        callback(schedule);
+        renderGames(schedule);
       });
     }
-
-
   } else {
-    // local storate not supported by browser -> load from remote
-    loadSchedule(teamId, callback);
+    // local storate not supported by browser
+    loadSchedule(teamId, function(schedule){
+      renderGames(schedule);
+    });
+  }
+});
+
+
+function renderGames(schedule) {
+  $("section#games").empty();
+  var template = $("article#template").clone();
+  for(i in schedule.games) {
+    $('#games').append(renderGame(template, schedule.games[i]));
   }
 }
 
 function loadSchedule(teamId, callback) {
   // FIXME: check if schedule for team is available
-  $.get('razfaz.json', function(schedule) {
+  $.get('/api/schedules/' + teamId, function(schedule) {
     callback(schedule);
   });
 }
@@ -48,6 +64,4 @@ function renderGame(tpl, game) {
   $(".result", template).text(game.result);
   return template;
 }
-
-
 
