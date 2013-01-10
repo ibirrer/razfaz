@@ -50,19 +50,17 @@ http.createServer(function (req, res) {
   }  
 
   // serve html
-  else if(endsWith(req.url, ".html") || endsWith(req.url, "/")) {
-    var file = req.url;
-    if(req.url == "/") {
-      file = "/index.html"
-    } 
-    serveClientFile(res, file, "text/html");
-  }
-  
+  else if(req.url == "/" 
+      || req.url == "/razfaz/schedule"
+      || req.url == "/hydra/schedule") {
+        serveClientFile(res, "/index.html", "text/html");
+      }
+
   // serve png
   else if(endsWith(req.url, ".png")) {
     serveClientFile(res, req.url, "image/png");
   }
-  
+
   // serve ico
   else if(endsWith(req.url, ".ico")) {
     serveClientFile(res, req.url, "image/x-icon");
@@ -78,11 +76,11 @@ console.log('Server running at port %d', port);
 
 
 function endsWith(str, suffix) {
-    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+  return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
 
 function serveClientFile(res, file, mimeType) {
-  console.log("serve client file %s", file);
+  // console.log("serve client file %s", file);
   fs.readFile("client" + file, function (err, data) {
     if (err) {
       serve404(res);
