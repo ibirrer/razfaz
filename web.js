@@ -3,6 +3,10 @@ var port = process.env.PORT || 5000;
 var fs = require('fs');
 var http = require('http');
 
+// config
+var appcacheDisabled = process.env.RAZFAZ_APPCACHE 
+    && process.env.RAZFAZ_APPCACHE == 'false';
+
 // get application version from package.json
 var version = JSON.parse(fs.readFileSync("package.json", "utf8")).version;
 
@@ -11,7 +15,10 @@ http.createServer(function (req, res) {
 
   // serve appcache (html5 cache manifest)
   if(req.url == "/razfaz.appcache") {
-    console.log("serve razfaz.appcache");
+    if(appcacheDisabled) {
+      serve404(res);
+      return;
+    }
 
     fs.readFile("client" + req.url, 'utf8', function (err, data) {
       if (err) {
@@ -54,7 +61,7 @@ http.createServer(function (req, res) {
       || req.url == "/razfaz/schedule"
       || req.url == "/hydra/schedule") {
         serveClientFile(res, "/index.html", "text/html");
-      }
+  }
 
   // serve png
   else if(endsWith(req.url, ".png")) {
