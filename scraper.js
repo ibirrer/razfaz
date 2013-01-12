@@ -1,13 +1,23 @@
 // web scraper that reads a schedule from http://www.r-v-z.ch/index.php?id=73&nextPage=2&team_ID=20160 
 // and inserts that schedule into the mongodb schedules collection
 
-var teamId = 20160;
-scrape(teamId, function(err, schedule) {
-  handleError(err);
-  updateSchedule(schedule);
-});
+var teamIds = [20349,20288,20437,20212,20271,20160];
 
-function updateSchedule(schedule) {
+for(i in teamIds) {
+  var teamId = teamIds[i];
+  console.log("get schedule for team " + teamId);
+  scrape(teamId, function(err, schedule) {
+    if(err) {console.log("ERROR: " + err); return;}
+    saveSchedule(schedule);
+  });
+}
+
+setTimeout(function() { 
+        console.log("quick fix that this script does not always end -> kill after 60 seconds");  
+        process.exit(1);
+      }, 60 * 1000);
+
+function saveSchedule(schedule) {
   var Db = require('mongodb').Db;
   var uri = process.env['MONGOLAB_URI']; 
   if(uri == null) { 
@@ -16,34 +26,32 @@ function updateSchedule(schedule) {
 
   console.log("Connecting to " + uri);
   Db.connect(uri, function(err, db) {
-    handleError(err);
+    if(err) {console.log("ERROR: " + err); return;}
     db.collection('schedules', function(err, collection) {
-      handleError(err);
+      if(err) {console.log("ERROR: " + err); db.close(); return;}
       // check if schedule already exists or has changed
       collection.findOne(schedule, function(err, doc) {
-        handleError(err);
+        if(err) {console.log("ERROR: " + err); db.close(); return;}
 
         if(doc != null) {
           console.log("Skip schedule because it is already stored and has not changed since the last update");
-          process.exit(0);
+          db.close();
+          return;
         }
 
         // schedule either not yet saved or changed -> upsert it
-        collection.update({"team.id":schedule.team.id}, { "$set": {"team": schedule.team, "games": schedule.games}, "$inc": {"version":1}}, {upsert:true}, function(err, result) {
-          handleError(err);
-          console.log("Inserted schedule: %s", JSON.stringify(schedule));
+        collection.update({"team.id":schedule.team.id}, 
+          {"$set": {"team": schedule.team, "games": schedule.games}, 
+            "$inc": {"version":1}},
+          {upsert:true}, function(err, result) {
+
+          if(err) {console.log("ERROR: " + err); db.close(); return;}
+          console.log("Inserted schedule: %s", schedule.team.id);
           db.close();
         });
       });
     });
   });
-}
-
-function handleError(err) {
-  if(err) {
-    console.log("unexpected error: %s", err);
-    process.exit(1);
-  }
 }
 
 
@@ -61,6 +69,10 @@ function scrape(teamId, callback) {
     rvz.on('end', function() {
       var cheerio = require('cheerio'),
       $ = cheerio.load(body);
+
+      var teamName = $('table.tx_clicsvws_pi1_mainTableGroup tr td').eq(1).text();
+      console.log("teamName: %s", teamName);
+
       var games = $('a[title="Definitives Datum"]')
         .parent() // td
         .parent() // tr
@@ -74,7 +86,7 @@ function scrape(teamId, callback) {
       var schedule = {};
       schedule.team = {
         "id": teamId,
-        "name": "Raz Faz"
+        "name": teamName
       };
 
       schedule.games = [];
@@ -92,7 +104,7 @@ function scrape(teamId, callback) {
 
         var venue = "A";
         var opponent = home;
-        if(home == "Raz Faz") {
+        if(home == teamName) {
           venue = "H";
           opponent = away;
         }

@@ -45,9 +45,14 @@ http.createServer(function (req, res) {
   }  
   
   // serve json from mongodb
-  else if(req.url == "/api/schedules/20160") {
-    getSchedule(20160, function(err, result){
-      if(err) {
+  else if(endsWith(req.url, "schedule.json")) {
+    // URLs must be in the following format: /teamId/schedule.json
+    var teamId = getTeamId(req.url); 
+
+    console.log("teamId: %s", teamId);
+
+    getSchedule(teamId, function(err, result){
+      if(err || result == null) {
         serve404(res);
         return;
       }
@@ -55,13 +60,6 @@ http.createServer(function (req, res) {
       res.end(JSON.stringify(result));
     });
   }  
-
-  // serve html
-  else if(req.url == "/" 
-      || req.url == "/razfaz/schedule"
-      || req.url == "/hydra/schedule") {
-        serveClientFile(res, "/index.html", "text/html");
-  }
 
   // serve png
   else if(endsWith(req.url, ".png")) {
@@ -72,6 +70,11 @@ http.createServer(function (req, res) {
   else if(endsWith(req.url, ".ico")) {
     serveClientFile(res, req.url, "image/x-icon");
   }  
+
+  // serve html
+  else if(req.url == "/" || (req.url.split('/').length == 3 && endsWith(req.url, "schedule"))) {
+    serveClientFile(res, "/index.html", "text/html");
+  }
 
   // 404 if request cannot be served
   else {
@@ -131,4 +134,16 @@ function getSchedule(teamId, callback) {
       });
     });
   });
+}
+
+function getTeamId(path) {
+  // get first part of path
+  var primaryPath = path.split('/')[1];
+
+  // razfaz has a readable path synonym
+  if(primaryPath == "razfaz") {
+    return 20160;
+  }
+
+  return parseInt(primaryPath);
 }

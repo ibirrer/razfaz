@@ -1,5 +1,6 @@
 $(document).ready(function() {
-  var teamId = 20160;
+  var teamId = getTeamId(window.location.pathname);
+
   if (Modernizr.localstorage) {
     var localScheduleAsString = localStorage["schedules." + teamId];
     localSchedule = localScheduleAsString == null ? null : JSON.parse(localScheduleAsString);
@@ -41,6 +42,7 @@ $(document).ready(function() {
 
 
 function renderGames(schedule) {
+  $("#team").text(schedule.team.name);
   $("section#games").empty();
   var template = $("article#template").clone();
   for(i in schedule.games) {
@@ -50,7 +52,7 @@ function renderGames(schedule) {
 
 function loadSchedule(teamId, callback) {
   // FIXME: check if schedule for team is available
-  $.get('/api/schedules/' + teamId, function(schedule) {
+  $.get('/' + teamId + '/schedule.json', function(schedule) {
     callback(schedule);
   });
 }
@@ -65,3 +67,21 @@ function renderGame(tpl, game) {
   return template;
 }
 
+function getTeamId(path) {
+  var primaryPath;
+  
+  // serve razfaz as default team
+  if(path == "/") {
+    return 20160; 
+  }
+  
+  // get first part of path
+  primaryPath = path.split('/')[1];
+
+  // razfaz has a readable path synonym
+  if(primaryPath == "razfaz") {
+    return 20160;
+  }
+
+  return primaryPath;
+}

@@ -107,6 +107,7 @@ header h1 {
   font-size: 3em;
   text-align: center;
   margin: 0;
+  text-transform: uppercase;
 }
 
 header h2 {
