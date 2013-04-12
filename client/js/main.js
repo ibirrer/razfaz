@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var teamId = getTeamId(window.location.pathname);
+  var teamId = 'razfaz';//getTeamId(window.location.pathname);
 
   if (Modernizr.localstorage) {
     var localScheduleAsString = localStorage["schedules." + teamId];
@@ -27,7 +27,7 @@ $(document).ready(function() {
     } else {
       // schedule not available locally -> load and store it
       loadSchedule(teamId, function(schedule) {
-        console.log("render remote schedlue and save it");
+        console.log("render remote schedule and save it");
         localStorage["schedules." + teamId] = JSON.stringify(schedule);
         renderGames(schedule);
       });
@@ -52,7 +52,7 @@ function renderGames(schedule) {
 
 function loadSchedule(teamId, callback) {
   // FIXME: check if schedule for team is available
-  $.get('/' + teamId + '/schedule.json', function(schedule) {
+  $.getJSON('http://localhost:5000/' + teamId + '/schedule.json', function(schedule) {
     callback(schedule);
   });
 }

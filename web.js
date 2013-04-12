@@ -56,7 +56,11 @@ http.createServer(function (req, res) {
         serve404(res);
         return;
       }
-      res.writeHead(200, {'Content-Type': "application/json"});
+      res.writeHead(200, 
+      {
+        'Content-Type': "application/json",
+        'Access-Control-Allow-Origin': "*"
+      });
       res.end(JSON.stringify(result));
     });
   }  
