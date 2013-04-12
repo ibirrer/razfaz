@@ -22,4 +22,8 @@
     <feature name="http://api.phonegap.com/1.0/network"/>
     <preference name="phonegap-version" value="2.5.0" />
 
+    <icon src="img/icon_57.png"  gap:platform="ios" width="57" height="57" />
+    <icon src="img/icon_72.png"  gap:platform="ios" width="72" height="72" />
+    <icon src="img/icon_114.png" gap:platform="ios" width="114" height="114" />
+
 </widget>
