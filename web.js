@@ -43,6 +43,11 @@ http.createServer(function (req, res) {
   else if(endsWith(req.url, ".js")) {
     serveClientFile(res, req.url, "text/javascript");
   }  
+
+  // serve fonts
+  else if(endsWith(req.url, ".woff")) {
+    serveClientFile(res, req.url, "application/x-font-woff");
+  }  
   
   // serve json from mongodb
   else if(endsWith(req.url, "schedule.json")) {
