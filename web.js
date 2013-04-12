@@ -20,7 +20,7 @@ http.createServer(function (req, res) {
       return;
     }
 
-    fs.readFile("client" + req.url, 'utf8', function (err, data) {
+    fs.readFile("www" + req.url, 'utf8', function (err, data) {
       if (err) {
         console.error(err);
         serve404(res);
@@ -95,7 +95,7 @@ function endsWith(str, suffix) {
 
 function serveClientFile(res, file, mimeType) {
   // console.log("serve client file %s", file);
-  fs.readFile("client" + file, function (err, data) {
+  fs.readFile("www" + file, function (err, data) {
     if (err) {
       serve404(res);
       return;
@@ -106,7 +106,7 @@ function serveClientFile(res, file, mimeType) {
 }
 
 function serve404(res) {
-  fs.readFile("client/404.html", function (err, data) {
+  fs.readFile("www/404.html", function (err, data) {
     if (err) throw err;
     res.writeHead(404, {'Content-Type': 'text/html'});
     res.end(data);
