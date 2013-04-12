@@ -1,8 +1,4 @@
 $(document).ready(function() {
-  $(window).scroll(function(eventObject) {
-    var scrollTop = $(window).scrollTop();
-    $("#scrollTop").text(scrollTop);
-  });
   var teamId = 'razfaz';//getTeamId(window.location.pathname);
 
   if (Modernizr.localstorage) {
