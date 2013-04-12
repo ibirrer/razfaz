@@ -1,50 +1,44 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:700">
-    <title>Hello World</title>
-  </head>
-  <body>
-    <header>
-      <h1 id="team">RAZ FAZ</h1>
-      <h2>SAISON 2012/2013</h2> 
-    </header>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" manifest="/razfaz.appcache"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>RAZ FAZ - Spielplan 2012/2013</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <meta name="format-detection" content="telephone=no" />
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
 
-    <section id="games">
-    </section>
-    
-    <article id="template" class="game">
-    <div class="info">
-      <div class="venue"></div>
-      <div class="date"></div>
-      <div class="time"></div>
-      <div class="opponent"></div>
-    </div>
-    <div class="result"></div>
-    </article>
+        <header>
+          <h1 id="team">RAZ FAZ</h1>
+          <h2>SAISON 2012/2013</h2> 
+        </header>
 
+        <section id="games">
+        </section>
+        
+        <article id="template" class="game">
+        <div class="info">
+          <div class="venue"></div>
+          <div class="date"></div>
+          <div class="time"></div>
+          <div class="opponent"></div>
+        </div>
+        <div class="result"></div>
+        </article>
 
-    <div class="app">
-      <h1>PhoneGap</h1>
-      <div id="deviceready">
-        <p class="status pending blink">Connecting to Device</p>
-        <p class="status complete blink hide">Device is Ready</p>
-      </div>
-    </div>
-    <ul>
-      <li>
-      <a href="http://razfaz.there.ch" target="_blank">RAZ FAZ</a>
-      </li>
-    </ul>
-    <script type="text/javascript" src="phonegap.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript">
-      app.initialize();
-      </script>
+        <script src="js/vendor/jquery-1.8.3.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
     </body>
-  </html>
+</html>
