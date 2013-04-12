@@ -52,7 +52,7 @@ function renderGames(schedule) {
 
 function loadSchedule(teamId, callback) {
   // FIXME: check if schedule for team is available
-  $.getJSON('http://localhost:5000/' + teamId + '/schedule.json', function(schedule) {
+  $.getJSON('http://razfaz.there.ch/' + teamId + '/schedule.json', function(schedule) {
     callback(schedule);
   });
 }
