@@ -1,4 +1,32 @@
 $(document).ready(function() {
+
+  var inProgress = false;
+  var content = $("#content");
+
+  content.bind('touchstart', function(){});
+    
+  var callback = function() {
+    // callback is called even if this callback was just added in the touchstart event of the menu-button.
+    // Check 'inProgress' to avoid closing the menu when this first event fires
+    if(content.hasClass("collapsed") && !inProgress) {
+      content.removeClass("collapsed");
+      content.unbind('touchstart', callback);
+    }
+    inProgress = false;
+  };
+
+
+  $("#menu-button").bind('touchstart', function() {
+    if(content.hasClass("collapsed")) {
+      content.unbind('touchstart', callback);
+      content.removeClass("collapsed");
+    } else {
+      inProgress = true;
+      content.addClass("collapsed");
+      content.bind('touchstart', callback);
+    }
+  });
+
   var teamId = 'razfaz';//getTeamId(window.location.pathname);
 
   if (Modernizr.localstorage) {
@@ -42,12 +70,19 @@ $(document).ready(function() {
 
 
 function renderGames(schedule) {
+  var template = $("article.game").first().clone();
   $("#team").text(schedule.team.name);
   $("section#games").empty();
-  var template = $("article#template").clone();
   for(i in schedule.games) {
     $('#games').append(renderGame(template, schedule.games[i]));
   }
+  updateWindowHeight();
+}
+
+// updates the height of the overall site to the height of the content
+function updateWindowHeight() {
+  var height = $("#content").height();
+  $("#wrapper").css("height", height);
 }
 
 function loadSchedule(teamId, callback) {

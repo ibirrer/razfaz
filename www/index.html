@@ -18,28 +18,46 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-        <header>
-          <h1 id="team">RAZ FAZ</h1>
-          <h2>SAISON 2012/2013</h2> 
-        </header>
 
-        <section id="games">
+    <div id="wrapper">
+        <nav id="site-nav">
+          <h2>Teams</h2>
+          <ul>
+            <li><a href="#">Gay Sport 2</a></li>
+            <li><a href="#/blog">Dübi-Volley</a></li>
+            <li><a href="#/blog">Volley S9 H2</a></li>
+            <li><a href="#/blog">VBC Hydra</a></li>
+            <li><a href="#/blog">Raz Faz</a></li>
+            <li><a href="#/blog">Volley Grüningen</a></li>
+          </ul>
+        </nav>
+
+        <section id="content">
+
+          <header>
+            <h1 id="team">RAZ FAZ</h1>
+            <h2>SAISON 2012/2013</h2> 
+            <a id="menu-button"></a>
+          </header>
+
+          <section id="games">
+            <article id="template" class="game">
+            <div class="info">
+              <div class="venue"></div>
+              <div class="date"></div>
+              <div class="time"></div>
+              <div class="opponent"></div>
+            </div>
+            <div class="result"></div>
+            </article>
+          </section>
+
         </section>
-        
-        <article id="template" class="game">
-        <div class="info">
-          <div class="venue"></div>
-          <div class="date"></div>
-          <div class="time"></div>
-          <div class="opponent"></div>
-        </div>
-        <div class="result"></div>
-        </article>
+      </div>
+
 
         <script src="js/vendor/jquery-1.8.3.min.js"></script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
-
-
     </body>
 </html>

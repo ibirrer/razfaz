@@ -146,10 +146,10 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="304.27778"
-     inkscape:cy="164.52776"
-     inkscape:document-units="mm"
+     inkscape:zoom="11.313708"
+     inkscape:cx="269.75945"
+     inkscape:cy="358.67491"
+     inkscape:document-units="px"
      inkscape:current-layer="layer3"
      showgrid="false"
      units="px"
@@ -182,7 +182,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1389,59 +1389,22 @@
        y="423.50009" />
     <path
        style="fill:#ffffff;fill-opacity:1;stroke:none"
-       d="m 313.4375,-34.5625 c 0,166.33333 0,332.66667 0,499 94,0 188,0 282,0 0,-167 0,-334 0,-501 -94,0 -188,0 -282,0 l 0,1 0,1 z"
+       d="m 306.36643,-43.754888 c 0,166.333328 0,332.666668 0,498.999998 94,0 188,0 282,0 0,-167 0,-334 0,-500.999998 -94,0 -188,0 -282,0 l 0,1 0,1 z"
        id="rect4779"
        inkscape:connector-curvature="0" />
     <path
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#535545;stroke-width:3;stroke-miterlimit:4;stroke-opacity:1"
-       d="m 252.29331,52.431355 25.41338,0 c 1.96299,0 3.54331,1.580314 3.54331,3.543307 l 0,30.050867 c 0,1.962992 -1.58032,3.543307 -3.54331,3.543307 l -25.41338,0 c -1.96299,0 -3.54331,-1.580315 -3.54331,-3.543307 l 0,-30.050867 c 0,-1.962993 1.58032,-3.543307 3.54331,-3.543307 z"
+       style="fill:none;stroke:#4d4d4d;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 253.14297,54.000091 29.71408,0 c 2.29519,0 4.14296,1.760634 4.14296,3.947611 l 0,33.479778 c 0,2.186976 -1.84777,3.947611 -4.14296,3.947611 l -29.71408,0 c -2.29519,0 -4.14296,-1.760635 -4.14296,-3.947611 l 0,-33.479778 c 0,-2.186977 1.84777,-3.947611 4.14296,-3.947611 z"
        id="rect4592" />
     <path
        inkscape:connector-curvature="0"
-       style="fill:#535545;fill-opacity:1;stroke:none"
-       d="m 261.66626,60.448696 12.40157,0 0,3 -12.40157,0 z"
-       id="rect4594" />
-    <path
-       inkscape:connector-curvature="0"
-       style="fill:#575f2a;fill-opacity:1;stroke:none"
-       d="m 255.5481,60.918369 2,0 0,2 -2,0 z"
-       id="rect4596" />
-    <path
-       inkscape:connector-curvature="0"
-       style="fill:#535545;fill-opacity:1;stroke:#95b31c;stroke-width:2.00000023999999987;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:0"
-       d="m 258.14905,61.916655 c 0,0.828427 -0.67158,1.5 -1.5,1.5 -0.82843,0 -1.5,-0.671573 -1.5,-1.5 0,-0.828427 0.67157,-1.5 1.5,-1.5 0.82842,0 1.5,0.671573 1.5,1.5 z"
-       id="path4598" />
-    <path
-       inkscape:connector-curvature="0"
-       style="fill:#535545;fill-opacity:1;stroke:none"
-       d="m 261.66626,66.4487 12.40157,0 0,3 -12.40157,0 z"
-       id="rect4600" />
-    <path
-       inkscape:connector-curvature="0"
-       style="fill:#575f2a;fill-opacity:1;stroke:none"
-       d="m 255.5481,66.918373 2,0 0,2 -2,0 z"
-       id="rect4602" />
-    <path
-       inkscape:connector-curvature="0"
-       style="fill:#535545;fill-opacity:1;stroke:#95b31c;stroke-width:2.00000023999999987;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:0"
-       d="m 258.14905,67.916655 c 0,0.828427 -0.67158,1.5 -1.5,1.5 -0.82843,0 -1.5,-0.671573 -1.5,-1.5 0,-0.828427 0.67157,-1.5 1.5,-1.5 0.82842,0 1.5,0.671573 1.5,1.5 z"
-       id="path4604" />
-    <path
-       inkscape:connector-curvature="0"
-       style="fill:#535545;fill-opacity:1;stroke:none"
-       d="m 261.66626,72.4487 12.40157,0 0,3 -12.40157,0 z"
-       id="rect4606" />
-    <path
-       inkscape:connector-curvature="0"
-       style="fill:#575f2a;fill-opacity:1;stroke:none"
-       d="m 255.5481,72.918373 2,0 0,2 -2,0 z"
-       id="rect4608" />
-    <path
-       inkscape:connector-curvature="0"
-       style="fill:#535545;fill-opacity:1;stroke:#95b31c;stroke-width:2.00000023999999987;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:0"
-       d="m 258.14905,73.916655 c 0,0.828427 -0.67158,1.5 -1.5,1.5 -0.82843,0 -1.5,-0.671573 -1.5,-1.5 0,-0.828427 0.67157,-1.5 1.5,-1.5 0.82842,0 1.5,0.671573 1.5,1.5 z"
-       id="path4610" />
+       style="fill:#4d4d4d;fill-opacity:1;stroke:none"
+       d="m 267,60.000092 14,0 0,3 -14,0 z"
+       id="rect4594"
+       inkscape:export-filename="/home/ibirrer/dev/tvw2/www/img/menu-button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        style="fill:#212120;fill-opacity:1;stroke:none;display:inline"
        id="rect4882"
@@ -1610,5 +1573,61 @@
          x="14.114817"
          id="tspan4063"
          sodipodi:role="line">Saison</tspan></text>
+    <path
+       id="path4164"
+       d="m 267,66.000092 14,0 0,3 -14,0 z"
+       style="fill:#4d4d4d;fill-opacity:1;stroke:none"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ibirrer/dev/tvw2/www/img/menu-button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:#4d4d4d;fill-opacity:1;stroke:none"
+       d="m 267,72.000092 14,0 0,3 -14,0 z"
+       id="path4168"
+       inkscape:export-filename="/home/ibirrer/dev/tvw2/www/img/menu-button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="/home/ibirrer/dev/tvw2/www/img/menu-button.png"
+       id="path4172"
+       d="m 260,60.000092 3,0 0,3 -3,0 z"
+       style="fill:#4d4d4d;fill-opacity:1;stroke:none"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="/home/ibirrer/dev/tvw2/www/img/menu-button.png"
+       inkscape:connector-curvature="0"
+       style="fill:#4d4d4d;fill-opacity:1;stroke:none"
+       d="m 260,66.000092 3,0 0,3 -3,0 z"
+       id="path4174" />
+    <path
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="/home/ibirrer/dev/tvw2/www/img/menu-button.png"
+       id="path4176"
+       d="m 260,72.000092 3,0 0,3 -3,0 z"
+       style="fill:#4d4d4d;fill-opacity:1;stroke:none"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="/home/ibirrer/dev/tvw2/www/img/menu-button.png"
+       id="path4182"
+       d="m 267,78.000092 14,0 0,3 -14,0 z"
+       style="fill:#4d4d4d;fill-opacity:1;stroke:none"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:#4d4d4d;fill-opacity:1;stroke:none"
+       d="m 260,78.000092 3,0 0,3 -3,0 z"
+       id="path4184"
+       inkscape:export-filename="/home/ibirrer/dev/tvw2/www/img/menu-button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>
