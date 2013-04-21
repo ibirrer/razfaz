@@ -1,34 +1,8 @@
 $(document).ready(function() {
+  initNavigation();
+});
 
-  var inProgress = false;
-  var content = $("#content");
-
-  content.bind('touchstart', function(){});
-    
-  var callback = function() {
-    // callback is called even if this callback was just added in the touchstart event of the menu-button.
-    // Check 'inProgress' to avoid closing the menu when this first event fires
-    if(content.hasClass("collapsed") && !inProgress) {
-      content.removeClass("collapsed");
-      content.unbind('touchstart', callback);
-    }
-    inProgress = false;
-  };
-
-
-  $("#menu-button").bind('touchstart', function() {
-    if(content.hasClass("collapsed")) {
-      content.unbind('touchstart', callback);
-      content.removeClass("collapsed");
-    } else {
-      inProgress = true;
-      content.addClass("collapsed");
-      content.bind('touchstart', callback);
-    }
-  });
-
-  var teamId = 'razfaz';//getTeamId(window.location.pathname);
-
+function loadAndRenderGames(teamId) {
   if (Modernizr.localstorage) {
     var localScheduleAsString = localStorage["schedules." + teamId];
     localSchedule = localScheduleAsString == null ? null : JSON.parse(localScheduleAsString);
@@ -66,7 +40,8 @@ $(document).ready(function() {
       renderGames(schedule);
     });
   }
-});
+
+}
 
 
 function renderGames(schedule) {
@@ -120,3 +95,78 @@ function getTeamId(path) {
 
   return primaryPath;
 }
+
+function initNavigation() {
+  var clickEvent = 'click';
+  if (Modernizr.touch){
+    clickEvent = 'touchstart';
+  }
+
+
+  var inProgress = false;
+  var content = $("#content");
+
+  content.bind(clickEvent, function(){});
+    
+  var callback = function() {
+    // callback is called even if this callback was just added in the touchstart event of the menu-button.
+    // Check 'inProgress' to avoid closing the menu when this first event fires
+    if(content.hasClass("collapsed") && !inProgress) {
+      content.removeClass("collapsed");
+      content.unbind(clickEvent, callback);
+    }
+    inProgress = false;
+  };
+
+
+  $("#menu-button").bind(clickEvent, function() {
+    if(content.hasClass("collapsed")) {
+      content.unbind(clickEvent, callback);
+      content.removeClass("collapsed");
+    } else {
+      inProgress = true;
+      content.addClass("collapsed");
+      content.bind(clickEvent, callback);
+    }
+  });
+
+  // TODO: Make it work if history is not supported
+  if (Modernizr.history) {
+    var renderCurrentTeam = function(state) {
+      if(state && state.teamId) {
+        loadAndRenderGames(state.teamId);
+      } else {
+        loadAndRenderGames('razfaz');
+      }
+      
+      content.unbind(clickEvent, callback);
+      content.removeClass("collapsed");
+    };
+
+
+    // disable default click event that would cause a reload of the page
+    $("a").click(function(){
+      return false;
+    });
+
+    $("a").on(clickEvent, function() {
+      var path = $(this).attr('href');
+      var state = { teamId: getTeamId("/" + path)};
+      var title = path;
+      
+      if(document.location.protocol.match("http[s]?:")) {
+        history.pushState(state, title, path);
+      } else {
+        history.pushState(state, title, '#' + path);
+      }
+      renderCurrentTeam(state);
+
+      return true;
+    });
+
+    $(window).on('popstate', function(event) {
+      renderCurrentTeam(event.originalEvent.state);
+    });
+  }
+}
+
