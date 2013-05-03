@@ -166,6 +166,10 @@ function initNavigation() {
     });
 
     $(window).on('popstate', function(event) {
+      // chrome fires popstate on refresh but others not
+      if(event.originalEvent.state == null) {
+        return;
+      }
       renderCurrentTeam(event.originalEvent.state);
     });
     
