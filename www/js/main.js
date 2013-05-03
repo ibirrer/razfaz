@@ -156,7 +156,7 @@ function initNavigation() {
       var title = path;
       
       if(document.location.protocol.match("http[s]?:")) {
-        history.pushState(state, title, path);
+        history.pushState(state, title, "/" + path);
       } else {
         history.pushState(state, title, '#' + path);
       }
