@@ -3,14 +3,15 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" manifest="/razfaz.appcache"> <!--<![endif]-->
-    <head>
+  <head>
     <script type="text/javascript">
       // the site uses relative links to make it compatible with phonegap (local files)
     // this base tag sets the base url if the page is server by http to make the relative
     // links also work if e.g. on /razfaz/schedule
-          if(document.location.protocol.match('http[s]?:')) {
-            document.write("<base href=\"" + document.location.protocol + "//" + document.location.host + "/\" />");
-          }
+        if(document.location.protocol.match('http[s]?:')) {
+          document.write("<base href=\"" + document.location.protocol + "//" + document.location.host + "/\" />");
+        }
+        
         </script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">

@@ -56,7 +56,8 @@ function renderGames(schedule) {
 
 // updates the height of the overall site to the height of the content
 function updateWindowHeight() {
-  var height = $("#content").height();
+  var min = $(window).height();
+  var height = Math.max(min, $("#content").height());
   $("#wrapper").css("height", height);
 }
 
@@ -167,6 +168,16 @@ function initNavigation() {
     $(window).on('popstate', function(event) {
       renderCurrentTeam(event.originalEvent.state);
     });
+    
+    // get current path
+    var teamId;
+    if(document.location.protocol.match("http[s]?:")) {
+      teamId = getTeamId(document.location.pathname);
+    } else {
+      teamId = getTeamId("/" + document.location.hash.substr(1));
+    }
+    console.log("teamId: " + teamId);
+    renderCurrentTeam({'teamId': teamId});
   }
 }
 
