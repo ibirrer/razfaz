@@ -9,13 +9,10 @@ apple-touch-icon-57x57-precomposed.png
 apple-touch-icon-72x72-precomposed.png
 apple-touch-icon.png
 apple-touch-icon-precomposed.png
-img/menu-button.png
 css/main.css
-css/normalize.css
 fonts/Oswald.woff
 favicon.ico
 js/main.js
-js/plugins.js
 js/vendor/jquery-1.8.3.min.js
 js/vendor/modernizr-2.6.2.min.js
 
