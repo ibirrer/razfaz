@@ -1,72 +1,59 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" manifest="/razfaz.appcache"> <!--<![endif]-->
+<!doctype html>
+<html class="no-js">
   <head>
-    <script type="text/javascript">
+    <script>
       // the site uses relative links to make it compatible with phonegap (local files)
-    // this base tag sets the base url if the page is server by http to make the relative
-    // links also work if e.g. on /razfaz/schedule
-        if(document.location.protocol.match('http[s]?:')) {
-          document.write("<base href=\"" + document.location.protocol + "//" + document.location.host + "/\" />");
-        }
-        
-        </script>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>RAZ FAZ - Spielplan 2012/2013</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
-        <meta name="format-detection" content="telephone=no" />
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
-
+      // this base tag sets the base url if the page is server by http to make the relative
+      // links also work if e.g. on /razfaz/schedule
+      if(document.location.protocol.match('http[s]?:')) {
+        document.write("<base href=\"" + document.location.protocol + "//" + document.location.host + "/\" />");
+      }
+    </script>
+    <meta charset="utf-8">
+    <title>RAZ FAZ - Spielplan 2012/2013</title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+  </head>
+  <body>
     <div id="wrapper">
-        <nav id="site-nav">
-          <h2>Teams</h2>
-          <ul>
-            <li><a href="20349/schedule">Gay Sport 2</a></li>
-            <li><a href="20288/schedule">Dübi-Volley</a></li>
-            <li><a href="20271/schedule">Volley S9 H2</a></li>
-            <li><a href="20212/schedule">VBC Hydra</a></li>
-            <li><a href="razfaz/schedule">Raz Faz</a></li>
-            <li><a href="20437/schedule">Volley Grüningen</a></li>
-          </ul>
-        </nav>
+      <nav>
+      <h2>Teams</h2>
+      <ul>
+        <li><a href="20349/schedule">Gay Sport 2</a></li>
+        <li><a href="20288/schedule">Dübi-Volley</a></li>
+        <li><a href="20271/schedule">Volley S9 H2</a></li>
+        <li><a href="20212/schedule">VBC Hydra</a></li>
+        <li><a href="razfaz/schedule">Raz Faz</a></li>
+        <li><a href="20437/schedule">Volley Grüningen</a></li>
+      </ul>
+      </nav>
 
-        <section id="content">
+      <header id="main-header" class="slidable unselectable">
+      <a id="hamburger-button"></a>
+      <h1 id="team">RazFaz</h1>
+      </header>
 
-          <header>
-            <h1 id="team">RAZ FAZ</h1>
-            <h2>SAISON 2012/2013</h2> 
-            <div id="menu-button"></div>
-          </header>
+      <section id="main-content-wrapper" class="slidable">
+      <div id="main-content">
+        <section id="games">
 
-          <section id="games">
-            <article id="template" class="game">
-            <div class="info">
-              <div class="venue"></div>
-              <div class="date"></div>
-              <div class="time"></div>
-              <div class="opponent"></div>
-            </div>
-            <div class="result"></div>
-            </article>
-          </section>
+          <article id="template" class="game">
+          <div class="info">
+            <div class="venue">H</div>
+            <div class="date">DI 4.11</div>
+            <div class="time">20:00</div>
+            <div class="opponent">Grüningen</div>
+          </div>
+          <div class="result">3:2</div>
+          </article>
 
-        </section>
-      </div>
-
-
-        <script src="js/vendor/jquery-1.8.3.min.js"></script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-    </body>
+        </section> <!-- games -->
+      </div> <!-- main-content -->
+      </section> <!-- main-content-wrapper -->
+    </div> <!-- wrapper -->
+    <script src="js/vendor/jquery-1.8.3.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
