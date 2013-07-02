@@ -2,12 +2,12 @@
   "name": "razfaz-schedule",
   "version": "0.7.0-0",
   "dependencies": {
-    "cheerio": "0.10.x",
-    "moment": "1.6.x",
-    "mongodb": "1.2.x"
+    "cheerio": "0.12.x",
+    "moment": "2.0.x",
+    "mongodb": "1.3.x"
   },
   "engines": {
-    "node": "0.8.x",
-    "npm": "1.1.x"
+    "node": "0.10.x",
+    "npm": "1.3.x"
   }
 }
