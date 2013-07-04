@@ -85,6 +85,11 @@ http.createServer(function (req, res) {
     serveClientFile(res, "/index.html", "text/html");
   }
 
+  // serve checkbox
+  else if(req.url == "/checkbox.html") {
+    serveClientFile(res, "/checkbox.html", "text/html");
+  }
+
   // 404 if request cannot be served
   else {
     serve404(res);

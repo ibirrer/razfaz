@@ -103,9 +103,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="1638.3578"
-     inkscape:cy="-1018.5011"
+     inkscape:zoom="5.6568542"
+     inkscape:cx="1964.071"
+     inkscape:cy="-968.14216"
      inkscape:document-units="px"
      inkscape:current-layer="layer3"
      showgrid="true"
@@ -141,7 +141,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -8022,6 +8022,62 @@
          x="1678.9976"
          y="1401.3971"
          style="font-size:10px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#cacaca;fill-opacity:1;font-family:Oswald;-inkscape-font-specification:Oswald Bold">MICHAEL</tspan></text>
+    <g
+       style="fill:#cacaca;fill-opacity:1;display:inline"
+       id="g5091"
+       transform="matrix(3.0509016,0,0,3.1193081,1723.2366,846.96469)"
+       inkscape:export-filename="/home/ibirrer/dev/razfaz/www/img/person_icon_sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <g
+         style="fill:#cacaca;fill-opacity:1"
+         id="g5093">
+        <path
+           style="fill:#cacaca;fill-opacity:1;stroke:none"
+           d="m 67.386346,176.03731 1.246682,0 c 1.801703,0 4.091296,1.29259 4.352583,3.06269 0.06746,0.45699 0,1.40009 0,1.40009 l -10.098113,0 c 0,0 -0.07388,-0.94506 0,-1.40009 0.28742,-1.7701 2.69715,-3.06269 4.498848,-3.06269 z"
+           id="path5095"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="sssccss" />
+        <path
+           sodipodi:type="arc"
+           style="fill:#cacaca;fill-opacity:1;stroke:none"
+           id="path5097"
+           sodipodi:cx="-166.3091"
+           sodipodi:cy="184.80186"
+           sodipodi:rx="12.680152"
+           sodipodi:ry="13.937688"
+           d="m -153.62895,184.80186 c 0,7.69758 -5.67709,13.93769 -12.68015,13.93769 -7.00305,0 -12.68015,-6.24011 -12.68015,-13.93769 0,-7.69757 5.6771,-13.93768 12.68015,-13.93768 7.00306,0 12.68015,6.24011 12.68015,13.93768 z"
+           transform="matrix(0.17961735,0,0,0.17501113,97.807127,140.97944)" />
+      </g>
+    </g>
+    <g
+       transform="matrix(3.0509016,0,0,3.1193081,1755.2366,846.96469)"
+       id="g5107"
+       style="fill:#95b31c;fill-opacity:1;display:inline"
+       inkscape:export-filename="/home/ibirrer/dev/razfaz/www/img/person_icon_sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <g
+         id="g5109"
+         style="fill:#95b31c;fill-opacity:1">
+        <path
+           sodipodi:nodetypes="sssccss"
+           inkscape:connector-curvature="0"
+           id="path5111"
+           d="m 67.386346,176.03731 1.246682,0 c 1.801703,0 4.091296,1.29259 4.352583,3.06269 0.06746,0.45699 0,1.40009 0,1.40009 l -10.098113,0 c 0,0 -0.07388,-0.94506 0,-1.40009 0.28742,-1.7701 2.69715,-3.06269 4.498848,-3.06269 z"
+           style="fill:#95b31c;fill-opacity:1;stroke:none" />
+        <path
+           transform="matrix(0.17961735,0,0,0.17501113,97.807127,140.97944)"
+           d="m -153.62895,184.80186 c 0,7.69758 -5.67709,13.93769 -12.68015,13.93769 -7.00305,0 -12.68015,-6.24011 -12.68015,-13.93769 0,-7.69757 5.6771,-13.93768 12.68015,-13.93768 7.00306,0 12.68015,6.24011 12.68015,13.93768 z"
+           sodipodi:ry="13.937688"
+           sodipodi:rx="12.680152"
+           sodipodi:cy="184.80186"
+           sodipodi:cx="-166.3091"
+           id="path5113"
+           style="fill:#95b31c;fill-opacity:1;stroke:none"
+           sodipodi:type="arc" />
+      </g>
+    </g>
   </g>
   <g
      inkscape:groupmode="layer"
