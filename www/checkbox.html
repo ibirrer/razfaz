@@ -7,24 +7,24 @@
   <meta name="format-detection" content="telephone=no">
   <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
   <style type="text/css">
-    input[type="checkbox"] {
-        display:none;
-    }
+  input[type="checkbox"] {
+    display:none;
+  }
+  
+  input[type="checkbox"] + label span {
+    display:inline-block;
+    width:31px;
+    height:31px;
+    margin:10px;
+    vertical-align:middle;
+    background:url(/img/person_icon_sprite.png) left top no-repeat;
+    cursor:pointer;
+  }
 
-    input[type="checkbox"] + label span {
-      display:inline-block;
-      width:31px;
-      height:31px;
-      margin:10px;
-      vertical-align:middle;
-      background:url(/img/person_icon_sprite.png) left top no-repeat;
-      cursor:pointer;
-    }
-
-    input[type="checkbox"]:checked + label span {
-      background:url(/img/person_icon_sprite.png) -32px top no-repeat;
-    } 
-
+  input[type="checkbox"]:checked + label span {
+    /* don't reference the image again here! Otherwise safari will load it again */
+    background-position: -32px top;
+  } 
   </style>
 </head>
 <body>
