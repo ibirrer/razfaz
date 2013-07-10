@@ -90,6 +90,11 @@ http.createServer(function (req, res) {
     serveClientFile(res, "/checkbox.html", "text/html");
   }
 
+  // serve absences
+  else if(req.url == "/absences.html") {
+    serveClientFile(res, "/absences.html", "text/html");
+  }
+
   // 404 if request cannot be served
   else {
     serve404(res);

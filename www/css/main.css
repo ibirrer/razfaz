@@ -64,7 +64,7 @@ header#main-header h1 {
   /* Image created on http://www.patternify.com/ */
   /* http://bit.ly/10XcGFU */
   background: url(
-  data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAGCAYAAAACEPQxAAAAE0lEQVQIW2P8DwSMaAQDEDCCCAA/Vg/3UpJiWgAAAABJRU5ErkJggg==);
+    data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAGCAYAAAACEPQxAAAAE0lEQVQIW2P8DwSMaAQDEDCCCAA/Vg/3UpJiWgAAAABJRU5ErkJggg==);
 }
 
 /* main navigation */
@@ -200,5 +200,60 @@ div#main-content {
   right: 16px;
   font-size: 32px;
   color: #95b31c;
+}
+
+
+
+
+
+
+
+
+
+input[type="checkbox"] {
+  display:none;
+}
+
+input[type="checkbox"] + label span {
+  /* credit goes to */
+  /* http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-easy-css3-checkboxes-and-radio-buttons */
+  display:inline-block;
+  width:31px;
+  height:31px;
+  margin:10px;
+  vertical-align:middle;
+  background:url(/img/person_icon_sprite.png) left top no-repeat;
+  cursor:pointer;
+}
+
+input[type="checkbox"]:checked + label span {
+  /* don't reference the image again here! Otherwise safari will load it again */
+  background-position: -32px top;
+}
+
+a.button {
+  box-shadow:inset 0px 1px 0px 0px #ffffff;
+  background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+  background-color:#ffffff;
+  border-radius:6px;
+  border:1px solid #dcdcdc;
+  display:inline-block;
+  color:#666666;
+  font-family:arial;
+  font-size:15px;
+  font-weight:bold;
+  padding:6px 24px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #ffffff;
+}
+
+a.button:hover {
+  background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+  background-color:#f6f6f6;
+}
+
+a.button:active {
+  position:relative;
+  top:1px;
 }
 
