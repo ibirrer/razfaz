@@ -1,6 +1,6 @@
 {
   "name": "razfaz-schedule",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "dependencies": {
     "cheerio": "0.12.x",
     "moment": "2.0.x",
