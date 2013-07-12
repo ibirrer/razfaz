@@ -68,7 +68,12 @@ http.createServer(function (req, res) {
       });
       res.end(JSON.stringify(result));
     });
-  }  
+  }
+
+  // serve ics
+  else if(req.url == "/razfaz/schedule.ics") {
+    serveClientFile(res, "/razfaz-schedule.ics", "text/calendar");
+  }
 
   // serve png
   else if(endsWith(req.url, ".png")) {
