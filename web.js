@@ -46,7 +46,7 @@ http.createServer(function (req, res) {
 
   // serve fonts
   else if(endsWith(req.url, ".woff")) {
-    serveClientFile(res, req.url, "application/x-font-woff");
+    serveClientFile(res, req.url, "application/font-woff");
   }  
   
   // serve json from mongodb
