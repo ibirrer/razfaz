@@ -1,5 +1,99 @@
 $(document).ready(function() {
-  initNavigation();
+  if(!Array.isArray) {
+    Array.isArray = function (vArg) {
+      return Object.prototype.toString.call(vArg) === "[object Array]";
+    };
+  }
+
+  if ( !Array.prototype.forEach ) {
+    Array.prototype.forEach = function(fn, scope) {
+      for(var i = 0, len = this.length; i < len; ++i) {
+        if (i in this) {
+          fn.call(scope, this[i], i, this);
+        }
+      }
+    };
+  }
+
+
+  function render(data, dom) {
+    Object.keys(data).forEach(function(key) {
+      var value = data[key];
+      renderValue(key, value, dom);
+    });
+
+    function renderValue(key, value, path) {
+      var tag = getTag(key, path);
+      if(typeof value === 'string') {
+        tag.text(value);
+      }
+      else if (Array.isArray(value)) {
+        var item = tag.first().clone();
+        var parent = tag.parent();
+        parent.empty();
+        value.forEach(function(element, index) {
+          if (typeof element === 'object') {
+            item = item.clone();
+            parent.append(item);
+            // recursion
+            render(element, item);
+          }
+        });
+      }
+    }
+
+    function getTag(key, path) {
+      var tag = path.find('#' + key);
+      if(tag.length === 0) {
+        tag = path.find('.' + key);
+      }
+      return tag;
+    }
+  }
+
+  data = {
+    title: function() {
+      return this.team + " - " + this.season;
+    },
+    team: "Raz Faz 2",
+    season: "2013/2014",
+    game: [
+    {
+      venue:"A",
+      date:"MO 17.9",
+      time:"20:30",
+      opponent:"Volley S9 H2",
+      result:"1:3"
+    },
+    {
+      venue:"H",
+      date:"DI 18.9",
+      time:"20:30",
+      opponent:"Dübi Volley",
+      result:"3:0"
+    },
+    {
+      venue:"A",
+      date:"SO 24.9",
+      time:"20:15",
+      opponent:"Meilen",
+      result:"3:1"
+    },
+    {
+      venue:"H",
+      date:"MO 26.9",
+      time:"20:22",
+      opponent:"Gay Sport",
+      result:"3:1"
+    }
+    ]
+  };
+
+  document.title = data.title();
+
+  render(data, $(":root"));
+
+  // initNavigation();
 });
 
 function loadAndRenderGames(teamId) {
@@ -56,8 +150,8 @@ function renderGames(schedule) {
 function loadSchedule(teamId, callback) {
   // FIXME: check if schedule for team is available
   $.getJSON('http://razfaz.there.ch/' + teamId + '/schedule.json', function(schedule) {
-      callback(schedule);
-      });
+    callback(schedule);
+  });
 }
 
 function renderGame(tpl, game) {

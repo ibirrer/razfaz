@@ -1,0 +1,36 @@
+export.render = render;
+
+function render(data, dom) {
+  Object.keys(data).forEach(function(key) {
+    var value = data[key];
+    renderValue(key, value, dom);
+  });
+
+  function renderValue(key, value, path) {
+    var tag = getTag(key, path);
+    if(typeof value === 'string') {
+      tag.text(value);
+    }
+    else if (Array.isArray(value)) {
+      var item = tag.first().clone();
+      var parent = tag.parent();
+      parent.empty();
+      value.forEach(function(element, index) {
+        if (typeof element === 'object') {
+          item = item.clone();
+          parent.append(item);
+            // recursion
+            render(element, item);
+          }
+        });
+    }
+  }
+
+  function getTag(key, path) {
+    var tag = path.find('#' + key);
+    if(tag.length === 0) {
+      tag = path.find('.' + key);
+    }
+    return tag;
+  }
+}
