@@ -75,7 +75,7 @@ function getTeamId(path) {
 
   // serve razfaz as default team
   if(path == "/") {
-    return 20160; 
+    return 22069; 
   }
 
   // get first part of path
@@ -83,7 +83,7 @@ function getTeamId(path) {
 
   // razfaz has a readable path synonym
   if(primaryPath == "razfaz") {
-    return 20160;
+    return 22069;
   }
 
   return primaryPath;

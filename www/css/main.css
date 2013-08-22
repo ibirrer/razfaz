@@ -157,7 +157,7 @@ div#main-content {
 .info {
   position: absolute;
   left: 16px;
-  right: 100px;
+  right: 0;
   height: 80px;
 }
 
@@ -186,9 +186,11 @@ div#main-content {
 }
 
 .opponent {
+  overflow: hidden;
   position: absolute;
   top: 33px;
   left: 150px;
+  right: 53px;
   font-size: 14px;
   white-space: nowrap;
   color: #4d4d4d;
