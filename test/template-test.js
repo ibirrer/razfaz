@@ -14,9 +14,7 @@ if (typeof require == "function" && typeof module == "object") {
 } else {
   // browser
   createFixture = function(fixture) {
-    var html = $.parseHTML('<div id="fixture">' + fixture + '</div>');
-    $(':root').append(html);
-    return $('#fixture');
+    return $('<div><div>' + fixture + '</div></div>').children();
   }
 }
 
@@ -25,7 +23,13 @@ var assert = buster.assert;
 buster.testCase("template", {
   "simple by class": function () {
     var dom = createFixture('<div class="name"></div>');
-    template.render({ name: "Raz Faz"}, dom);
-    assert.equals('<div class="name">Raz Faz</div>', dom.html());
+    template.render({ name: "razfaz"}, dom);
+    assert.equals('<div class="name">razfaz</div>', dom.html());
+  },
+
+  "simple by id": function () {
+    var dom = createFixture('<div id="name"></div>');
+    template.render({ name: "razfaz"}, dom);
+    assert.equals('<div id="name">razfaz</div>', dom.html());
   }
 })
