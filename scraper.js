@@ -1,7 +1,14 @@
-// web scraper that reads a schedule from http://www.r-v-z.ch/index.php?id=73&nextPage=2&team_ID=20160 
-// and inserts that schedule into the mongodb schedules collection
+// scrapes schedule from http://www.svrt.ch/index.php?id=73&nextPage=2&team_ID=TEAM_ID
+// and inserts that schedule into the mongodb collection schedules
 
-var teamIds = [20349,20288,20437,20212,20271,20160];
+var teamIds = [
+22069, // Raz Faz
+22244, // Gay Sport 2
+22192, // Dübi Volley
+22114, // Obfelden Volley
+22173, // Einsiedeln
+22167  // Kanti Limmattal
+];
 
 for(i in teamIds) {
   var teamId = teamIds[i];
@@ -58,8 +65,10 @@ function saveSchedule(schedule) {
 function scrape(teamId, callback) {
   var http = require('http');
   var moment = require('moment');
-  moment.weekdaysShort = ["SO","MO","DI","MI","DO","FR","SA"];
-  var url ="http://www.r-v-z.ch/index.php?id=73&nextPage=2&team_ID=" + teamId;
+  moment.lang('en', {
+    weekdaysShort : ["SO","MO","DI","MI","DO","FR","SA"]
+  });
+  var url ="http://www.svrz.ch/index.php?id=73&nextPage=2&team_ID=" + teamId;
   http.get(url, function(rvz) {
     var body = ''
     rvz.on('data', function (chunk) {

@@ -46,7 +46,7 @@ http.createServer(function (req, res) {
 
   // serve fonts
   else if(endsWith(req.url, ".woff")) {
-    serveClientFile(res, req.url, "application/x-font-woff");
+    serveClientFile(res, req.url, "application/font-woff");
   }  
   
   // serve json from mongodb
@@ -164,9 +164,9 @@ function getTeamId(path) {
   // get first part of path
   var primaryPath = path.split('/')[1];
 
-  // razfaz has a readable path synonym
+  // human readable path synonym for razfaz
   if(primaryPath == "razfaz") {
-    return 20160;
+    return 22069;
   }
 
   return parseInt(primaryPath);

@@ -2,9 +2,10 @@
 <html class="no-js" manifest="/razfaz.appcache">
   <head>
     <script>
-      // the site uses relative links to make it compatible with phonegap (local files)
-      // this base tag sets the base url if the page is server by http to make the relative
-      // links also work if e.g. on /razfaz/schedule
+      // this site uses relative links to make it compatible with phonegap (local files)
+      // this base tag sets the base url if the page is served by http to make the relative
+      // links also work if e.g. on /razfaz/schedule. Note that chrome logs an error on the
+      // console even though loading the resources works fine.
       if(document.location.protocol.match('http[s]?:')) {
         document.write("<base href=\"" + document.location.protocol + "//" + document.location.host + "/\" />");
       }
@@ -21,12 +22,12 @@
       <nav>
       <h2>Teams</h2>
       <ul>
-        <li><a href="20349/schedule">Gay Sport 2</a></li>
-        <li><a href="20288/schedule">Dübi-Volley</a></li>
-        <li><a href="20271/schedule">Volley S9 H2</a></li>
-        <li><a href="20212/schedule">VBC Hydra</a></li>
         <li><a href="razfaz/schedule">Raz Faz</a></li>
-        <li><a href="20437/schedule">Volley Grüningen</a></li>
+        <li><a href="22244/schedule">Gay Sport 2</a></li>
+        <li><a href="22192/schedule">Dübi-Volley</a></li>
+        <li><a href="22114/schedule">Obfelden Volley</a></li>
+        <li><a href="22173/schedule">Pläuschler Einsiedeln</a></li>
+        <li><a href="22167/schedule">VBC Kanti Limmattal</a></li>
       </ul>
       </nav>
 
