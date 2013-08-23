@@ -55,7 +55,7 @@ $(document).ready(function() {
     title: function() {
       return this.team + " - " + this.season;
     },
-    team: "Raz Faz 2",
+    team: "Raz Faz 1",
     season: "2013/2014",
     game: [
     {
