@@ -13,8 +13,11 @@ css/main.css
 fonts/Oswald.woff
 favicon.ico
 js/main.js
+js/shims.js
 js/vendor/jquery-1.8.3.min.js
 js/vendor/modernizr-2.6.2.min.js
+lib/service.js
+lib/template.js
 
 NETWORK:
 *

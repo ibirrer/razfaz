@@ -1,12 +1,16 @@
 $(document).ready(function() {
-  initNavigation();
-});
 
-function loadAndRenderGames(teamId) {
-  if (Modernizr.localstorage) {
-    var localScheduleAsString = localStorage["schedules." + teamId];
-    localSchedule = localScheduleAsString == null ? null : JSON.parse(localScheduleAsString);
-    if(localSchedule) {
+  var service = exports.service;
+  var template = exports.template;
+
+  initNavigation();
+
+
+  function loadAndRenderGames(teamId) {
+    if (Modernizr.localstorage) {
+      var localScheduleAsString = localStorage["schedules." + teamId];
+      localSchedule = localScheduleAsString == null ? null : JSON.parse(localScheduleAsString);
+      if(localSchedule) {
       // schedule available locally
       console.log("render local schedule");
       renderGames(localSchedule);
@@ -35,7 +39,7 @@ function loadAndRenderGames(teamId) {
       });
     }
   } else {
-    // local storate not supported by browser
+    // local storage not supported by browser
     loadSchedule(teamId, function(schedule){
       renderGames(schedule);
     });
@@ -55,25 +59,6 @@ function loadSchedule(teamId, callback) {
   $.getJSON('http://razfaz.there.ch/' + teamId + '/schedule.json', function(schedule) {
     callback(schedule);
   });
-}
-
-function getTeamId(path) {
-  var primaryPath;
-
-  // serve razfaz as default team
-  if(path == "/") {
-    return 22069; 
-  }
-
-  // get first part of path
-  primaryPath = path.split('/')[1];
-
-  // razfaz has a readable path synonym
-  if(primaryPath == "razfaz") {
-    return 22069;
-  }
-
-  return primaryPath;
 }
 
 function initNavigation() {
@@ -113,7 +98,7 @@ function initNavigation() {
 
     $("nav a").on(clickEvent, function() {
       var path = $(this).attr('href');
-      var state = { teamId: getTeamId("/" + path)};
+      var state = { teamId: service.getTeamId("/" + path)};
       var title = path;
 
       if(document.location.protocol.match("http[s]?:")) {
@@ -137,12 +122,13 @@ function initNavigation() {
     // get current path
     var teamId;
     if(document.location.protocol.match("http[s]?:")) {
-      teamId = getTeamId(document.location.pathname);
+      teamId = service.getTeamId(document.location.pathname);
     } else {
-      teamId = getTeamId("/" + document.location.hash.substr(1));
+      teamId = service.getTeamId("/" + document.location.hash.substr(1));
     }
     console.log("teamId: " + teamId);
     renderCurrentTeam({'teamId': teamId});
   }
 }
+});
 

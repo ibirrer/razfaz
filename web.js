@@ -2,6 +2,8 @@ var port = process.env.PORT || 5000;
 
 var fs = require('fs');
 var http = require('http');
+var service = require('./www/lib/service').service;
+var template = require('./www/lib/template').template;
 
 // config
 var appcacheDisabled = process.env.RAZFAZ_APPCACHE 
@@ -52,9 +54,7 @@ http.createServer(function (req, res) {
   // serve json from mongodb
   else if(endsWith(req.url, "schedule.json")) {
     // URLs must be in the following format: /teamId/schedule.json
-    var teamId = getTeamId(req.url); 
-
-    console.log("teamId: %s", teamId);
+    var teamId = parseInt(service.getTeamId(req.url)); 
 
     getSchedule(teamId, function(err, result){
       if(err || result == null) {
@@ -83,7 +83,7 @@ http.createServer(function (req, res) {
   // serve ico
   else if(endsWith(req.url, ".ico")) {
     serveClientFile(res, req.url, "image/x-icon");
-  }  
+  }
 
   // serve html
   else if(req.url == "/" || (req.url.split('/').length == 3 && endsWith(req.url, "schedule"))) {
@@ -158,16 +158,4 @@ function getSchedule(teamId, callback) {
       });
     });
   });
-}
-
-function getTeamId(path) {
-  // get first part of path
-  var primaryPath = path.split('/')[1];
-
-  // human readable path synonym for razfaz
-  if(primaryPath == "razfaz") {
-    return 22069;
-  }
-
-  return parseInt(primaryPath);
 }

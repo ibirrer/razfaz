@@ -13,3 +13,9 @@ if ( !Array.prototype.forEach ) {
     }
   };
 }
+
+// commonjs shim
+exports = {};
+function require(module) {
+  return exports[module];
+}

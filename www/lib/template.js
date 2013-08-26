@@ -1,5 +1,6 @@
-(function (exports) {
+(function () {
   "use strict";
+
 
   function render(data, dom) {
     Object.keys(data).forEach(function (key) {
@@ -37,5 +38,6 @@
     }
   }
 
-  exports.render = render;
-})(typeof exports === 'undefined' ? this['template'] = {} : exports);
+  exports.template = {};
+  exports.template.render = render;
+})();
