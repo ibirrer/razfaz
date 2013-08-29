@@ -100,6 +100,11 @@ http.createServer(function (req, res) {
     serveClientFile(res, "/absences.html", "text/html");
   }
 
+  // serve aufstellung
+  else if(req.url == "/aufstellung.html") {
+    serveClientFile(res, "/aufstellung.html", "text/html");
+  }
+
   // 404 if request cannot be served
   else {
     serve404(res);
