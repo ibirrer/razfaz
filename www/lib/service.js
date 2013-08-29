@@ -25,5 +25,5 @@ define("service", function(exports, module) {
     }
   }
 
-  module.exports = service;
+  exports.getTeamId = service.getTeamId;
 });
