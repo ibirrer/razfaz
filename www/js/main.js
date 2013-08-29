@@ -1,10 +1,9 @@
 $(document).ready(function() {
 
-  var service = exports.service;
-  var template = exports.template;
+  var service = require("service");
+  var template = require("template");
 
   initNavigation();
-
 
   function loadAndRenderGames(teamId) {
     if (Modernizr.localstorage) {

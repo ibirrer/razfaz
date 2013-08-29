@@ -1,4 +1,11 @@
-(function () {
+if (typeof define !== 'function') {
+  var define = function(id, f) {
+    f(exports, module.exports);
+  }
+}
+
+
+define("service", function(exports, module) {
   "use strict";
 
   var service = {
@@ -18,5 +25,5 @@
     }
   }
 
-  exports.service = service;
-})();
+  module.exports = service;
+});

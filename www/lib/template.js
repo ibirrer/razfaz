@@ -1,6 +1,12 @@
-(function () {
-  "use strict";
+if (typeof define !== 'function') {
+  var define = function(id, f) {
+    f(exports, module.exports);
+  }
+}
 
+
+define("template", function(exports, module) {
+  "use strict";
 
   function render(data, dom) {
     Object.keys(data).forEach(function (key) {
@@ -38,6 +44,6 @@
     }
   }
 
-  exports.template = {};
-  exports.template.render = render;
-})();
+  exports.render = render;
+
+});

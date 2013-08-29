@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+
+  rect.court {
+    fill: #95b31c;
+  }
+
+  rect.court-inner {
+    fill: #f1f1f1;
+  }
+
+  .node rect {
+    fill: #777;
+  }
+
+  rect.node-inner {
+    fill: #fff;
+  }
+
+  .stage {
+    margin-top: 20px;
+    font-size: 30px;
+    fill: #000;
+    font-family: sans-serif;
+    text-align: center;
+  }
+
+  text {
+    font-size: 3.5px;
+    fill: #95b31c;
+    font-family: monospace;
+    font-weight: bold;
+  }
+
+  svg {
+    width: 100%;
+    max-height: 600px;
+  }
+
+  body {
+    max-width: 600px; 
+    margin: 0 auto;
+  }
+
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 98 98" preserveAspectRatio="xMidYMin"></svg>
+  <div class="stage"></div>
+
+  <script src="js/d3.js"></script>
+  <script src="js/aufstellung.js"></script>
+</body>
+</html>

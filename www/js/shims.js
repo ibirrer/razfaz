@@ -14,8 +14,21 @@ if ( !Array.prototype.forEach ) {
   };
 }
 
+
 // commonjs shim
-exports = {};
-function require(module) {
-  return exports[module];
-}
+(function() {
+  var modules = {};
+
+  // global functions
+  define = function(moduleId, f) {
+    var module = {};
+    module.exports = {};
+    modules[moduleId] = module;
+
+    f(module.exports, module);
+  }
+
+  require = function(moduleId) {
+    return modules[moduleId].exports;
+  }
+})();

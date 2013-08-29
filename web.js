@@ -2,8 +2,8 @@ var port = process.env.PORT || 5000;
 
 var fs = require('fs');
 var http = require('http');
-var service = require('./www/lib/service').service;
-var template = require('./www/lib/template').template;
+var service = require('./www/lib/service');
+var template = require('./www/lib/template');
 
 // config
 var appcacheDisabled = process.env.RAZFAZ_APPCACHE 
