@@ -11,20 +11,27 @@
     fill: #f1f1f1;
   }
 
+  .controller rect {
+    fill: #fff;
+    stroke: #777;
+  }
+
+  .controller text {
+    font-size: 5;
+    text-anchor: middle;
+    fill: #777;
+  }
+
+  .controller polyline {
+    fill: #777;
+  }
+
   .node rect {
     fill: #777;
   }
 
   rect.node-inner {
     fill: #fff;
-  }
-
-  .stage {
-    margin-top: 20px;
-    font-size: 30px;
-    fill: #000;
-    font-family: sans-serif;
-    text-align: center;
   }
 
   text {
@@ -40,7 +47,7 @@
   }
 
   body {
-    max-width: 600px; 
+    max-width: 600px;
     margin: 0 auto;
   }
 
@@ -50,9 +57,8 @@
   <meta name="viewport" content="width=device-width">
 </head>
 <body>
-  <svg viewBox="0 0 98 98" preserveAspectRatio="xMidYMin"></svg>
-  <div class="stage"></div>
-
+  <svg viewBox="0 0 98 120" preserveAspectRatio="xMidYMin">
+  </svg>
   <script src="js/d3.js"></script>
   <script src="js/aufstellung.js"></script>
 </body>
