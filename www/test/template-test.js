@@ -1,4 +1,5 @@
 var fixture;
+var template;
 
 if (typeof require == "function" && typeof module == "object") {
   // node
@@ -13,6 +14,7 @@ if (typeof require == "function" && typeof module == "object") {
 
 } else {
   // browser
+  template = require("template");
   fixture = function(fixture) {
     return $('<div><div>' + fixture + '</div></div>').children();
   }
@@ -47,12 +49,67 @@ buster.testCase("template", {
       {name:"2"},
       {name:"3"}]
     };
-    expected =   '<ul><li class="items"><span class="name">1</span></li>'
-               + '<li class="items"><span class="name">2</span></li>'
-               + '<li class="items"><span class="name">3</span></li></ul>';
+    expected =  ''
+    + '<ul><li class="items"><span class="name">1</span></li>'
+    + '<li class="items"><span class="name">2</span></li>'
+    + '<li class="items"><span class="name">3</span></li></ul>';
 
     dom = fixture('<ul><li class="items"><span class="name"></span></li></ul>');
     template.render(data, dom);
     assert.equals(expected, dom.html());
+  },
+
+  "nested": function () {
+    var data, dom, expected, tpl;
+    data = {
+        outer: { inner: "value" }
+    }
+
+    tpl =      '<div class="outer"><div class="inner"></div></div>\n';
+    expected = '<div class="outer"><div class="inner">value</div></div>\n';
+
+    dom = fixture(tpl);
+    template.render(data, dom);
+    assert.equals(expected, dom.html());
+  },
+
+  "nested list": function () {
+    var data, dom, expected, tpl;
+    data = {
+      item: [
+      {
+        v1: "v1a", 
+        v2: { l2: "n1a" }
+      },
+      {
+        v1: "v1b", 
+        v2: { l2: "n2b" }
+      }
+      ]
+    }
+
+
+    tpl = ''
+    + '<div class="item">\n'
+    + '<div class="v1"></div>\n'
+    + '<div class="v2"><span class="l2"></span></div>\n'
+    + '</div>';
+
+
+
+    expected = ''
+    + '<div class="item">\n'
+    + '<div class="v1">v1a</div>\n'
+    + '<div class="v2"><span class="l2">n1a</span></div>\n'
+    + '</div>'
+    + '<div class="item">\n'
+    + '<div class="v1">v1b</div>\n'
+    + '<div class="v2"><span class="l2">n2b</span></div>\n'
+    + '</div>';
+
+    dom = fixture(tpl);
+    template.render(data, dom);
+    assert.equals(expected, dom.html());
+    console.log(dom.html);
   }
 })

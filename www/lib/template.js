@@ -32,6 +32,8 @@ define("template", function(exports, module) {
             render(element, item);
           }
         });
+      } else if (typeof value === 'object') {
+        render(value, tag);
       }
     }
 

@@ -4,8 +4,9 @@ config["browser"] = {
     env: "browser", 
     rootPath: "../",
     sources: [
-        "lib/template.js",
-        "www/js/vendor/jquery-1.8.3.min.js"
+        "js/vendor/jquery-1.8.3.min.js",
+        "js/shims.js",
+        "lib/template.js"
     ],
     tests: [
         "test/*-test.js"
