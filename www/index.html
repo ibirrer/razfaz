@@ -1,15 +1,6 @@
 <!doctype html>
 <html class="no-js" manifest="/razfaz.appcache">
   <head>
-    <script>
-      // this site uses relative links to make it compatible with phonegap (local files)
-      // this base tag sets the base url if the page is served by http to make the relative
-      // links also work if e.g. on /razfaz/schedule. Note that chrome logs an error on the
-      // console even though loading the resources works fine.
-      if(document.location.protocol.match('http[s]?:')) {
-        document.write("<base href=\"" + document.location.protocol + "//" + document.location.host + "/\" />");
-      }
-    </script>
     <meta charset="utf-8">
     <title>RAZ FAZ - Spielplan 2012/2013</title>
     <meta name="viewport" content="width=device-width">

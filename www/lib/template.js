@@ -8,6 +8,18 @@ if (typeof define !== 'function') {
 define("template", function(exports, module) {
   "use strict";
 
+  function relativeToAbsoluteUrls($) {
+    $('[href]').each(function(i, elem) {
+      var path = $(elem).attr('href');
+      $(elem).attr('href', '/' + path)
+    });
+
+    $('[src]').each(function(i, elem) {
+      var path = $(elem).attr('src');
+      $(elem).attr('src', '/' + path)
+    });
+  }
+
   function render(data, dom) {
     Object.keys(data).forEach(function (key) {
       var value = data[key];
@@ -47,5 +59,5 @@ define("template", function(exports, module) {
   }
 
   exports.render = render;
-
+  exports.relativeToAbsoluteUrls = relativeToAbsoluteUrls;
 });

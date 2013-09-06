@@ -23,6 +23,12 @@ if (typeof require == "function" && typeof module == "object") {
 var assert = buster.assert;
 
 buster.testCase("template", {
+  "relativeToAbsoluteUrls": function () {
+    var dom = fixture('<div href="bar"></div>');
+    template.relativeToAbsoluteUrls($);
+    assert.equals('<div href="/bar"></div>', dom.html());
+  },
+
   "simple by class": function () {
     var dom = fixture('<div class="name"></div>');
     template.render({ name: "razfaz"}, dom);

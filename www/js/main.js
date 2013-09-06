@@ -89,14 +89,19 @@ function initNavigation() {
       }
     };
 
-
     // disable default click event that would cause a reload of the page
-    $("nav a").click(function(){
+    $("nav a").click(function() {
       return false;
     });
 
     $("nav a").on(clickEvent, function() {
+      // paths are abolute if served from server, relative if local (phonegap)
+      // normalize to relative
       var path = $(this).attr('href');
+      if(path.substring(0,1) === '/') {
+        path = path.substring(1);
+      }
+
       var state = { teamId: service.getTeamId("/" + path)};
       var title = path;
 

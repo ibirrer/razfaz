@@ -90,6 +90,7 @@ http.createServer(function (req, res) {
         data.team = result.team.name;
 
         res.writeHead(200, {'Content-Type': "text/html"});
+        template.relativeToAbsoluteUrls($);
         template.render(data, $.root());
         res.end($.html());
       });
