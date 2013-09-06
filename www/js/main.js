@@ -95,19 +95,20 @@ function initNavigation() {
     });
 
     $("nav a").on(clickEvent, function() {
+      var path, state, title;
       // paths are abolute if served from server, relative if local (phonegap)
       // normalize to relative
-      var path = $(this).attr('href');
-      if(path.substring(0,1) === '/') {
-        path = path.substring(1);
-      }
-
-      var state = { teamId: service.getTeamId("/" + path)};
-      var title = path;
+      path = $(this).attr('href');
 
       if(document.location.protocol.match("http[s]?:")) {
-        history.pushState(state, title, "/" + path);
+        // if site is served by http, absolute urls are used
+        state = { teamId: service.getTeamId(path)};
+        title = path.substring(1);
+        history.pushState(state, title, path);
       } else {
+        // local urls are relative (phonegap compatibility)
+        state = { teamId: service.getTeamId("/" + path)};
+        title = path;
         history.pushState(state, title, '#' + path);
       }
       renderCurrentTeam(state);
