@@ -4,10 +4,11 @@ var fs = require('fs');
 var http = require('http');
 var service = require('./www/lib/service');
 var template = require('./www/lib/template');
+var cheerio = require("cheerio");
 
 // config
 var appcacheDisabled = process.env.RAZFAZ_APPCACHE 
-    && process.env.RAZFAZ_APPCACHE == 'false';
+&& process.env.RAZFAZ_APPCACHE == 'false';
 
 // get application version from package.json
 var version = JSON.parse(fs.readFileSync("package.json", "utf8")).version;
@@ -70,6 +71,31 @@ http.createServer(function (req, res) {
     });
   }
 
+  // serve html
+  else if(req.url == "/" || (req.url.split('/').length == 3 && endsWith(req.url, "schedule"))) {
+    fs.readFile("www/index.html", function (err, data) {
+      if (err) {
+        serve404(res);
+        return;
+      }
+      var $ = cheerio.load(data);
+      var teamId = parseInt(service.getTeamId(req.url));
+      getSchedule(teamId, function(err, result) {
+        if(err || result == null) {
+          serve404(res);
+          return;
+        }
+        var data = {};
+        data.game = result.games;
+        data.team = result.team.name;
+
+        res.writeHead(200, {'Content-Type': "text/html"});
+        template.render(data, $.root());
+        res.end($.html());
+      });
+    });
+  }
+
   // serve ics
   else if(req.url == "/razfaz/schedule.ics") {
     serveClientFile(res, "/razfaz-schedule.ics", "text/calendar");
@@ -83,11 +109,6 @@ http.createServer(function (req, res) {
   // serve ico
   else if(endsWith(req.url, ".ico")) {
     serveClientFile(res, req.url, "image/x-icon");
-  }
-
-  // serve html
-  else if(req.url == "/" || (req.url.split('/').length == 3 && endsWith(req.url, "schedule"))) {
-    serveClientFile(res, "/index.html", "text/html");
   }
 
   // serve checkbox

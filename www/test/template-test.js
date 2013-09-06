@@ -4,7 +4,7 @@ var template;
 if (typeof require == "function" && typeof module == "object") {
   // node
   var buster = require("buster");
-  var template = require("../lib/template");
+  template = require("../lib/template");
   var cheerio = require("cheerio");
 
   fixture = function(fixture) {
